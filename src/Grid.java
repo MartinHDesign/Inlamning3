@@ -8,7 +8,7 @@ public class Grid extends JFrame {
     ArrayList<GamePiece> pieces = new ArrayList<>();
     public Grid(){
         setLayout(new GridLayout(4,4));
-        setSize(600, 600);
+        setSize(605, 630);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
