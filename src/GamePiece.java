@@ -1,12 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
-public class GamePiece extends JPanel implements ActionListener {
+public class GamePiece extends JPanel {
     int xCoordinate;
     int yCoordinate;
     int value;
-    int currentSlot;
     ImageIcon image;
 
     GamePiece(int x, int y, int value, int imageName)  {
@@ -16,6 +14,7 @@ public class GamePiece extends JPanel implements ActionListener {
         this.setSize(150, 150);
         this.image = new ImageIcon("src/images/" + imageName + ".png");
     }
+
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -49,16 +48,4 @@ public class GamePiece extends JPanel implements ActionListener {
         this.value = value;
     }
 
-    public int getCurrentSlot() {
-        return currentSlot;
-    }
-
-    public void setCurrentSlot(int currentSlot) {
-        this.currentSlot = currentSlot;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }
