@@ -6,6 +6,7 @@ public class GamePiece extends JPanel implements ActionListener {
     int xCoordinate;
     int yCoordinate;
     int value;
+    int currentSlot;
     ImageIcon image;
 
     GamePiece(int x, int y, int value, int imageName)  {
@@ -46,6 +47,14 @@ public class GamePiece extends JPanel implements ActionListener {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public int getCurrentSlot() {
+        return currentSlot;
+    }
+
+    public void setCurrentSlot(int currentSlot) {
+        this.currentSlot = currentSlot;
     }
 
     @Override
