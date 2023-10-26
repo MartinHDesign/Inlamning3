@@ -10,7 +10,7 @@ public class Grid extends JFrame {
     private final int VERTICAL_SPACING = 155;
     private int rows = 4;
     private int columns = 4;
-    private boolean fixedGame = false;
+    private boolean fixedGame = true;
 
     public Grid(){
         GamePiece[][] gamePieces = new GamePiece[columns][rows];
@@ -57,7 +57,7 @@ public class Grid extends JFrame {
         }
         for(int i = 0; i < rows; i++){
             for (int j = 0; j < columns; j++){
-                add(gamePieces[j][i]);
+                add(gamePieces[i][j]);
             }
         }
     }
