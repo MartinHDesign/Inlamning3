@@ -6,14 +6,16 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Grid extends JFrame {
-    private int columns = 4;
+    private final int HORIZONTAL_SPACING = 151;
+    private final int VERTICAL_SPACING = 155;
     private int rows = 4;
+    private int columns = 4;
     private boolean fixedGame = false;
 
     public Grid(){
         GamePiece[][] gamePieces = new GamePiece[columns][rows];
-        setLayout(new GridLayout(4,4));
-        setSize(605, 630);
+        setLayout(new GridLayout(rows, columns));
+        setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -47,6 +49,15 @@ public class Grid extends JFrame {
                     gamePieces[i][j] = gamePieces[m][n];
                     gamePieces[m][n] = temp;
                 }
+            }
+        }else{
+            GamePiece temp = gamePieces[rows - 1][columns - 1];
+            gamePieces[rows - 1][columns - 1] = gamePieces[rows - 1][columns - 2];
+            gamePieces[rows - 1][columns - 2] = temp;
+        }
+        for(int i = 0; i < rows; i++){
+            for (int j = 0; j < columns; j++){
+                add(gamePieces[j][i]);
             }
         }
     }
