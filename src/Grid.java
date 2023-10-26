@@ -12,6 +12,12 @@ public class Grid extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        createGamePieces();
+
+        setVisible(true);
+    }
+
+    private void createGamePieces() {
         int counter = 0;
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < 4; j++) {
@@ -27,8 +33,6 @@ public class Grid extends JFrame {
             add(g);
             counter++;
         }
-
-        setVisible(true);
     }
 
 }
