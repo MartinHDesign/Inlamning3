@@ -1,0 +1,11 @@
+26/10 (Daniel):
+    Jag gjorde om arrayListen till en tvådimensionell array. Min tankebana är att det ska funka såhär så småningom:
+
+    [1] [2] [3]
+    [4] [6] [5]
+    [7] [8] [ ]
+
+    Om man nu klickar på 5 så ska den kolla ett bakom sig i sin array [1][1] (på 6),
+        ett steg upp i sin array men på samma position [0][2] (på 3)
+        och ett steg ner i sin array med på samma position [2][2] (på tom ruta).
+    Om rutan är tom så byter dem plats i arrayen. Dvs [1][3] blir [2][3] och vise versa.
