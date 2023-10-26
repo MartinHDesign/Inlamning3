@@ -21,3 +21,13 @@
         * lägga till nytt spel knapp
         "Det ska finnas en knapp, ”Nytt spel”. När man klickar på denna ska alla brickorna blandas i
          slumpmässig ordning."
+26/10 (Martin):
+    Gör listan gamePieces till en instansvariabel då jag behöver den i action listener, om man vill ändra
+    rader och kolumner får man göra det i en constructor när klassen skapas i main
+26/10 (martin):
+    ändrade plats på i och j i din for loop för fixed game så siffrorna hamnar
+    [0][1][2] istället för [0][3][6]
+    [3][4][5]              [1][4][7]
+    [6][7][8]              [2][5][8]
+
+    obs! siffra 15 hamnar på fel plats!

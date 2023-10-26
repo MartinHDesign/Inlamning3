@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.Random;
 
 public class Grid extends JFrame {
@@ -10,10 +8,14 @@ public class Grid extends JFrame {
     private final int VERTICAL_SPACING = 155;
     private int rows = 4;
     private int columns = 4;
-    private boolean fixedGame = true;
+    private boolean fixedGame = false;
+    GamePiece[][] gamePieces = new GamePiece[columns][rows];
+
+    public GamePiece[][] getGamePieces() {
+        return gamePieces;
+    }
 
     public Grid(){
-        GamePiece[][] gamePieces = new GamePiece[columns][rows];
         setLayout(new GridLayout(rows, columns));
         setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING);
         setLocationRelativeTo(null);
@@ -61,6 +63,4 @@ public class Grid extends JFrame {
             }
         }
     }
-
-
 }
