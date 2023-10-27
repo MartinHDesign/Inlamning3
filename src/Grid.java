@@ -20,6 +20,7 @@ public class Grid extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         createGamePieces(gamePieces);
+        addMouseListener(gamePieces);
 
         constructBoard(fixedGame, gamePieces);
 
@@ -33,6 +34,13 @@ public class Grid extends JFrame {
                 gamePieces[i][j] = new GamePiece(i + 1, j + 1, counter, counter);
 
                 counter++;
+            }
+        }
+    }
+    private void addMouseListener(GamePiece[][] gamePieces){
+        for(int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
+                gamePieces[i][j].addMouseListener(new GameListener());
             }
         }
     }
