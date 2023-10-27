@@ -61,17 +61,11 @@ public class Grid extends JFrame {
                     gamePieces[m][n] = temp;
                 }
             }
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                add(gamePieces[i][j]);
 
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < columns; j++) {
-                    add(gamePieces[i][j]);
-                }
-            }
-        } else {
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < columns; j++) {
-                    add(gamePieces[i][j]);
-                }
             }
         }
     }
@@ -79,11 +73,13 @@ public class Grid extends JFrame {
     void newGame(boolean isGameFixed){
         remove(winLabel);
         setLayout(new GridLayout(rows,columns));
+
         for(GamePiece[] g: gamePieces){
             for(GamePiece gp: g){
                 remove(gp);
             }
         }
+
         fixedGame = isGameFixed;
         createGamePieces(gamePieces);
         constructBoard(fixedGame, gamePieces);
