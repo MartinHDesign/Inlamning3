@@ -42,3 +42,4 @@
     Skapade en meny (JMenuBar) som kan skapa ett nytt spel (antingen fixat eller inte) eller stänga ner spelet.
     Stötte på ett merge-problem. getGamePieces följde inte med i mergen till master från din branch, så GameListener
     funkar inte. Vet inte om man ska skriva in den manuellt eller om man kan merga in den på något sätt?
+    Titta på det du, så att den ändringen inte blir creditad till mig.
