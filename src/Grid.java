@@ -127,6 +127,8 @@ public class Grid extends JFrame {
                 remove(gp);
             }
         }
+        JLabel winLabel = new JLabel("You win!");
+        add(winLabel);
         revalidate();
         repaint();
     }
