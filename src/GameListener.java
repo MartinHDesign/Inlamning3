@@ -1,28 +1,43 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-public class GameListener implements ActionListener {
-    Grid g = new Grid();
+public class GameListener extends MouseAdapter {
+    public GameListener(GamePiece[][] gamePieces , Grid activeGrid) {
+        this.gamePieces = gamePieces;
+        this.activeGrid = activeGrid;
+    }
+    GamePiece[][] gamePieces;
+    Grid activeGrid;
+
     @Override
-    public void actionPerformed(ActionEvent e) {
-        GamePiece temp = (GamePiece) e.getSource();
+    public void mouseClicked(MouseEvent e) {
+        moveGamePiece(e);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        moveGamePiece(e);
+    }
+
+    public void moveGamePiece(MouseEvent e){
         int[] indexZero = findIndex(0);
-        int[] indexOfGamePiece = findIndex(temp.getValue());
+        int[] indexOfGamePiece = findIndex(((GamePiece) e.getSource()).getValue());
 
-        if (indexZero[0] == indexOfGamePiece[0]-1 && indexZero[1] == indexOfGamePiece[1]){
-            //byt plats norr kod kommer snart
-        } else if (indexZero[0] == indexOfGamePiece[0] && indexZero[1] == indexOfGamePiece[1]+1) {
-            //byt plats öst kod kommer snart
-        } else if (indexZero[0] == indexOfGamePiece[0]+1 && indexZero[1] == indexOfGamePiece[1]) {
-            //byt plats söder kod kommer snart
-        } else if (indexZero[0] == indexOfGamePiece[0] && indexZero[1] == indexOfGamePiece[1]-1) {
-            //byt plats väster kod kommer snart
+        if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece)) {
+            switchPositionGamePieces(indexZero, indexOfGamePiece);
+            activeGrid.constructBoard(true,gamePieces);
         }
+        activeGrid.revalidate();
+    }
 
+    public boolean zeroAdjacentGamePiece(int[] indexZero, int[] indexOfGamePiece){
+        return (indexZero[0] == indexOfGamePiece[0] - 1 && indexZero[1] == indexOfGamePiece[1]) ||
+                (indexZero[0] == indexOfGamePiece[0] && indexZero[1] == indexOfGamePiece[1] + 1) ||
+                (indexZero[0] == indexOfGamePiece[0] + 1 && indexZero[1] == indexOfGamePiece[1]) ||
+                (indexZero[0] == indexOfGamePiece[0] && indexZero[1] == indexOfGamePiece[1] - 1);
     }
     public int[] findIndex(int numberToFind){
         int[] indexOf = new int[2];
-        GamePiece[][] temp = g.getGamePieces();
+        GamePiece[][] temp = gamePieces;
         for (int i = 0; i < temp.length; i++) {
             for (int j = 0; j < temp[i].length; j++) {
                 if (temp[i][j].getValue() == numberToFind){
@@ -33,5 +48,17 @@ public class GameListener implements ActionListener {
         }
         return indexOf;
     }
+    public void switchPositionGamePieces(int[] indexOfZero, int[] indexOfGamePiece){
+        GamePiece[][] tempListOfGamePieces = gamePieces;
+
+        GamePiece zeroGamePiece = gamePieces[indexOfZero[0]][indexOfZero[1]];
+        GamePiece clickedGamePiece = gamePieces[indexOfGamePiece[0]][indexOfGamePiece[1]];
+
+        tempListOfGamePieces[indexOfZero[0]][indexOfZero[1]] = clickedGamePiece;
+        tempListOfGamePieces[indexOfGamePiece[0]][indexOfGamePiece[1]] = zeroGamePiece;
+
+        activeGrid.setGamePieces(tempListOfGamePieces);
+    }
+
 
 }

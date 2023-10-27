@@ -9,7 +9,7 @@ public class Grid extends JFrame {
     private int rows = 4;
     private int columns = 4;
     GamePiece[][] gamePieces = new GamePiece[columns][rows];
-    private boolean fixedGame = false;
+    private boolean fixedGame = true;
 
     public Grid(){
         setLayout(new GridLayout(rows, columns));
@@ -18,6 +18,7 @@ public class Grid extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         createGamePieces(gamePieces);
+        addMouseListener(gamePieces);
 
         constructBoard(fixedGame, gamePieces);
 
@@ -38,8 +39,15 @@ public class Grid extends JFrame {
             }
         }
     }
+    private void addMouseListener(GamePiece[][] gamePieces){
+        for(int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                gamePieces[i][j].addMouseListener(new GameListener(gamePieces, this));
+            }
+        }
+    }
 
-    private void constructBoard(boolean fixedGame, GamePiece[][] gamePieces){
+    public void constructBoard(boolean fixedGame, GamePiece[][] gamePieces){
         if(!fixedGame){
             Random random = new Random();
             for (int i = gamePieces.length - 1; i >= 0; i--) {
@@ -89,5 +97,7 @@ public class Grid extends JFrame {
         revalidate();
         repaint();
     }
-
+    public void setGamePieces(GamePiece[][] gamePieces) {
+        this.gamePieces = gamePieces;
+    }
 }
