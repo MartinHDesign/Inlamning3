@@ -31,3 +31,8 @@
     [6][7][8]              [2][5][8]
 
     obs! siffra 15 hamnar på fel plats!
+27/10 (Daniel):
+    Fixade ovan med en hotfix-branch från din branch.
+    Jag hade tänkt fel med logiken, som du skrev. Menade att det skulle hamna i ordning med
+    nollan på slutet och sen kasta om de två sista så att man var ett drag från att vinna. De skapas nu så att man
+    är ett drag från vinst
