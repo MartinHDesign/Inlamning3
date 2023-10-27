@@ -8,6 +8,7 @@ import java.util.Random;
 public class Grid extends JFrame {
     private final int HORIZONTAL_SPACING = 151;
     private final int VERTICAL_SPACING = 155;
+    private final int MENU_OFFSET = 30;
     private int rows = 4;
     private int columns = 4;
     GamePiece[][] gamePieces = new GamePiece[columns][rows];
@@ -15,7 +16,7 @@ public class Grid extends JFrame {
 
     public Grid(){
         setLayout(new GridLayout(rows, columns));
-        setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING);
+        setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING + MENU_OFFSET);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
