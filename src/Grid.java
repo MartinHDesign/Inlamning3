@@ -9,7 +9,7 @@ public class Grid extends JFrame {
     private int rows = 4;
     private int columns = 4;
     GamePiece[][] gamePieces = new GamePiece[columns][rows];
-    private boolean fixedGame = true;
+    private boolean fixedGame = false;
 
     public Grid(){
         setLayout(new GridLayout(rows, columns));
@@ -18,9 +18,9 @@ public class Grid extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         createGamePieces(gamePieces);
-        addMouseListener(gamePieces);
 
         constructBoard(fixedGame, gamePieces);
+        addMouseListener(gamePieces);
 
         Menu menu = new Menu();
         menu.setGrid(this);
@@ -66,10 +66,11 @@ public class Grid extends JFrame {
                     add(gamePieces[i][j]);
                 }
             }
-        }
-        for(int i = 0; i < rows; i++){
-            for (int j = 0; j < columns; j++){
-                add(gamePieces[j][i]);
+        } else {
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
+                    add(gamePieces[i][j]);
+                }
             }
         }
     }
