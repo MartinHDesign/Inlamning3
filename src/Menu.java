@@ -7,7 +7,6 @@ public class Menu extends JMenuBar {
     public Menu() {
         GameMenu();
         HelpMenu();
-
     }
 
     private void HelpMenu(){

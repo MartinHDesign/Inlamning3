@@ -35,7 +35,7 @@ public class Grid extends JFrame {
         int counter = 0;
         for(int i = 0; i < columns; i++){
             for(int j = 0; j < rows; j++) {
-                gamePieces[i][j] = new GamePiece(i + 1, j + 1, counter, counter);
+                gamePieces[i][j] = new GamePiece(i + 1, j + 1, counter);
 
                 counter++;
             }
