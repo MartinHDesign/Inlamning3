@@ -43,3 +43,6 @@
     Stötte på ett merge-problem. getGamePieces följde inte med i mergen till master från din branch, så GameListener
     funkar inte. Vet inte om man ska skriva in den manuellt eller om man kan merga in den på något sätt?
     Titta på det du, så att den ändringen inte blir creditad till mig.
+
+27/10 (Daniel):
+    Ändrade så att siffrorna i brickorna målas upp med paintcomponent istället för att vara hårdkodade bilder
