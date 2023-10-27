@@ -62,38 +62,42 @@ public class Grid extends JFrame {
                 }
             }
         }
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                add(gamePieces[i][j]);
-
-            }
-        }
+        addGamePiecesToBoard();
     }
 
     void newGame(boolean isGameFixed){
         remove(winLabel);
         setLayout(new GridLayout(rows,columns));
 
-        for(GamePiece[] g: gamePieces){
-            for(GamePiece gp: g){
-                remove(gp);
-            }
-        }
+        removeGamePiecesFromBoard();
 
         fixedGame = isGameFixed;
         createGamePieces(gamePieces);
         constructBoard(fixedGame, gamePieces);
         addMouseListener(gamePieces);
 
+        addGamePiecesToBoard();
+
+        revalidate();
+        repaint();
+    }
+
+    private void addGamePiecesToBoard() {
         for(GamePiece[] g: gamePieces){
             for(GamePiece gp: g){
                 add(gp);
             }
         }
-
-        revalidate();
-        repaint();
     }
+
+    private void removeGamePiecesFromBoard() {
+        for(GamePiece[] g: gamePieces){
+            for(GamePiece gp: g){
+                remove(gp);
+            }
+        }
+    }
+
     public void setGamePieces(GamePiece[][] gamePieces) {
         this.gamePieces = gamePieces;
     }
@@ -112,11 +116,7 @@ public class Grid extends JFrame {
     }
 
     private void win(){
-        for(GamePiece[] g: gamePieces){
-            for(GamePiece gp: g){
-                remove(gp);
-            }
-        }
+        removeGamePiecesFromBoard();
         setLayout(new BorderLayout());
         add(winLabel, BorderLayout.CENTER);
         revalidate();
