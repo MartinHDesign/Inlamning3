@@ -24,7 +24,7 @@ public class GameListener extends MouseAdapter {
 
         if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece)) {
             switchPositionGamePieces(indexZero, indexOfGamePiece);
-            activeGrid.constructBoard(activeGrid.isFixedGame(),gamePieces);
+            activeGrid.constructBoard(true,gamePieces);
         }
         activeGrid.revalidate();
     }
