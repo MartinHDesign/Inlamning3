@@ -65,7 +65,7 @@ public class Grid extends JFrame {
         addGamePiecesToBoard();
     }
 
-    void newGame(boolean isGameFixed){
+    public void newGame(boolean isGameFixed){
         remove(winLabel);
         setLayout(new GridLayout(rows,columns));
 
