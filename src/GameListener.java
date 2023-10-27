@@ -8,8 +8,9 @@ public class GameListener extends Grid implements MouseListener {
         int[] indexZero = findIndex(0);
         int[] indexOfGamePiece = findIndex(temp.getValue());
 
-        if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece))
-            switchPositionGamePieces(indexZero,indexOfGamePiece);
+        if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece)) {
+            switchPositionGamePieces(indexZero, indexOfGamePiece);
+        }
     }
 
     @Override
