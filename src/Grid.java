@@ -88,6 +88,7 @@ public class Grid extends JFrame {
         }
         createGamePieces(gamePieces);
         constructBoard(fixedGame, gamePieces);
+        addMouseListener(gamePieces);
 
         for(GamePiece[] g: gamePieces){
             for(GamePiece gp: g){
