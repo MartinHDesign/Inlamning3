@@ -83,17 +83,17 @@ public class Grid extends JFrame {
     }
 
     private void addGamePiecesToBoard() {
-        for(GamePiece[] g: gamePieces){
-            for(GamePiece gp: g){
-                add(gp);
+        for(GamePiece[] row: gamePieces){
+            for(GamePiece piece: row){
+                add(piece);
             }
         }
     }
 
     private void removeGamePiecesFromBoard() {
-        for(GamePiece[] g: gamePieces){
-            for(GamePiece gp: g){
-                remove(gp);
+        for(GamePiece[] row: gamePieces){
+            for(GamePiece piece: row){
+                remove(piece);
             }
         }
     }
