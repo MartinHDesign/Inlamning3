@@ -10,7 +10,7 @@ public class Grid extends JFrame {
     private int columns = 4;
     GamePiece[][] gamePieces = new GamePiece[columns][rows];
     private boolean fixedGame = false;
-    private final JLabel winLabel = new JLabel("You win!");
+    private final JLabel winLabel = new JLabel(new ImageIcon("src/images/You win.gif"));
 
     public Grid(){
         setLayout(new GridLayout(rows, columns));
@@ -78,6 +78,7 @@ public class Grid extends JFrame {
 
     void newGame(boolean isGameFixed){
         remove(winLabel);
+        setLayout(new GridLayout(rows,columns));
         for(GamePiece[] g: gamePieces){
             for(GamePiece gp: g){
                 remove(gp);
@@ -129,7 +130,8 @@ public class Grid extends JFrame {
                 remove(gp);
             }
         }
-        add(winLabel);
+        setLayout(new BorderLayout());
+        add(winLabel, BorderLayout.CENTER);
         revalidate();
         repaint();
     }
