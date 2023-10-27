@@ -1,21 +1,21 @@
 import java.awt.event.*;
 
-public class GameListener extends Grid implements MouseListener {
+public class GameListener implements MouseListener {
+    public GameListener(GamePiece[][] gamePieces , Grid activeGrid) {
+        this.gamePieces = gamePieces;
+        this.activeGrid = activeGrid;
+    }
+    GamePiece[][] gamePieces;
+    Grid activeGrid;
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        GamePiece temp = (GamePiece) e.getSource();
-        int[] indexZero = findIndex(0);
-        int[] indexOfGamePiece = findIndex(temp.getValue());
-
-        if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece)) {
-            switchPositionGamePieces(indexZero, indexOfGamePiece);
-        }
+        moveGamePiece(e);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        moveGamePiece(e);
     }
 
     @Override
@@ -33,6 +33,17 @@ public class GameListener extends Grid implements MouseListener {
 
     }
 
+    public void moveGamePiece(MouseEvent e){
+        int[] indexZero = findIndex(0);
+        int[] indexOfGamePiece = findIndex(((GamePiece) e.getSource()).getValue());
+
+        if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece)) {
+            switchPositionGamePieces(indexZero, indexOfGamePiece);
+            activeGrid.constructBoard(true,gamePieces);
+        }
+        activeGrid.revalidate();
+    }
+
     public boolean zeroAdjacentGamePiece(int[] indexZero, int[] indexOfGamePiece){
         return (indexZero[0] == indexOfGamePiece[0] - 1 && indexZero[1] == indexOfGamePiece[1]) ||
                 (indexZero[0] == indexOfGamePiece[0] && indexZero[1] == indexOfGamePiece[1] + 1) ||
@@ -41,7 +52,7 @@ public class GameListener extends Grid implements MouseListener {
     }
     public int[] findIndex(int numberToFind){
         int[] indexOf = new int[2];
-        GamePiece[][] temp = getGamePieces();
+        GamePiece[][] temp = gamePieces;
         for (int i = 0; i < temp.length; i++) {
             for (int j = 0; j < temp[i].length; j++) {
                 if (temp[i][j].getValue() == numberToFind){
@@ -53,16 +64,15 @@ public class GameListener extends Grid implements MouseListener {
         return indexOf;
     }
     public void switchPositionGamePieces(int[] indexOfZero, int[] indexOfGamePiece){
-        GamePiece[][] tempListOfGamePieces = getGamePieces();
+        GamePiece[][] tempListOfGamePieces = gamePieces;
 
-        GamePiece zeroGamePiece = tempListOfGamePieces[indexOfZero[0]][indexOfZero[1]];
-        GamePiece clickedGamePiece = tempListOfGamePieces[indexOfGamePiece[0]][indexOfGamePiece[1]];
+        GamePiece zeroGamePiece = gamePieces[indexOfZero[0]][indexOfZero[1]];
+        GamePiece clickedGamePiece = gamePieces[indexOfGamePiece[0]][indexOfGamePiece[1]];
 
         tempListOfGamePieces[indexOfZero[0]][indexOfZero[1]] = clickedGamePiece;
         tempListOfGamePieces[indexOfGamePiece[0]][indexOfGamePiece[1]] = zeroGamePiece;
 
-        setGamePieces(tempListOfGamePieces);
-
+        activeGrid.setGamePieces(tempListOfGamePieces);
     }
 
 

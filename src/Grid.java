@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.*;
 import java.util.Random;
 
 public class Grid extends JFrame {
@@ -9,7 +9,7 @@ public class Grid extends JFrame {
     private int rows = 4;
     private int columns = 4;
     private boolean fixedGame = true;
-    GamePiece[][] gamePieces = new GamePiece[columns][rows];
+    private GamePiece[][] gamePieces = new GamePiece[columns][rows];
 
 
 
@@ -40,15 +40,12 @@ public class Grid extends JFrame {
     private void addMouseListener(GamePiece[][] gamePieces){
         for(int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                GamePiece temp = gamePieces[i][j];
-                temp.addMouseListener(new GameListener());
-                System.out.println(gamePieces[i][j].getValue());
-//                gamePieces[i][j].addMouseListener(new GameListener());
+                gamePieces[i][j].addMouseListener(new GameListener(gamePieces, this));
             }
         }
     }
 
-    private void constructBoard(boolean fixedGame, GamePiece[][] gamePieces){
+    public void constructBoard(boolean fixedGame, GamePiece[][] gamePieces){
         if(!fixedGame){
             Random random = new Random();
             for (int i = gamePieces.length - 1; i > 0; i--) {
@@ -61,11 +58,11 @@ public class Grid extends JFrame {
                     gamePieces[m][n] = temp;
                 }
             }
-        }else{
-            GamePiece temp = gamePieces[0][0];
-            gamePieces[0][0] = gamePieces[0][1];
-            gamePieces[0][1] = temp;
-        }
+        }//else{
+//            GamePiece temp = gamePieces[0][0];
+//            gamePieces[0][0] = gamePieces[0][1];
+//            gamePieces[0][1] = temp;
+//        }
         for(int i = 0; i < rows; i++){
             for (int j = 0; j < columns; j++){
                 add(gamePieces[i][j]);
