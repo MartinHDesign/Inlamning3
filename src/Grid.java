@@ -102,4 +102,37 @@ public class Grid extends JFrame {
     public void setGamePieces(GamePiece[][] gamePieces) {
         this.gamePieces = gamePieces;
     }
+
+    public void checkWin(GamePiece[][] gamePieces){
+        int currentValue = 0;
+        boolean keepChecking = true;
+        for(GamePiece[] g: gamePieces){
+            if(keepChecking) {
+                for (GamePiece gp : g) {
+                    if(gp.getValue() != 0) {
+                        if (gp.getValue() == currentValue + 1) {
+                            currentValue = gp.getValue();
+                        } else {
+                            keepChecking = false;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        if(keepChecking){
+            win();
+        }
+    }
+
+    private void win(){
+        for(GamePiece[] g: gamePieces){
+            for(GamePiece gp: g){
+                remove(gp);
+            }
+        }
+        revalidate();
+        repaint();
+
+    }
 }

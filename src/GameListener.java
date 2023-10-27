@@ -58,6 +58,7 @@ public class GameListener extends MouseAdapter {
         tempListOfGamePieces[indexOfGamePiece[0]][indexOfGamePiece[1]] = zeroGamePiece;
 
         activeGrid.setGamePieces(tempListOfGamePieces);
+        activeGrid.checkWin(gamePieces);
     }
 
 
