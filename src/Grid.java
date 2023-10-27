@@ -8,7 +8,7 @@ public class Grid extends JFrame {
     private final int VERTICAL_SPACING = 155;
     private int rows = 4;
     private int columns = 4;
-    private boolean fixedGame = false;
+    private boolean fixedGame = true;
     GamePiece[][] gamePieces = new GamePiece[columns][rows];
 
     public GamePiece[][] getGamePieces() {
@@ -53,9 +53,9 @@ public class Grid extends JFrame {
                 }
             }
         }else{
-            GamePiece temp = gamePieces[rows - 1][columns - 1];
-            gamePieces[rows - 1][columns - 1] = gamePieces[rows - 1][columns - 2];
-            gamePieces[rows - 1][columns - 2] = temp;
+            GamePiece temp = gamePieces[0][0];
+            gamePieces[0][0] = gamePieces[0][1];
+            gamePieces[0][1] = temp;
         }
         for(int i = 0; i < rows; i++){
             for (int j = 0; j < columns; j++){
