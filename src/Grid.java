@@ -1,29 +1,29 @@
 import javax.swing.*;
 import java.awt.*;
-
 import java.util.Random;
 
 public class Grid extends JFrame {
     private final int HORIZONTAL_SPACING = 151;
     private final int VERTICAL_SPACING = 155;
+    private final int MENU_OFFSET = 30;
     private int rows = 4;
     private int columns = 4;
-    private boolean fixedGame = true;
     GamePiece[][] gamePieces = new GamePiece[columns][rows];
-
-    public GamePiece[][] getGamePieces() {
-        return gamePieces;
-    }
+    private boolean fixedGame = false;
 
     public Grid(){
         setLayout(new GridLayout(rows, columns));
-        setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING);
+        setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING + MENU_OFFSET);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         createGamePieces(gamePieces);
 
         constructBoard(fixedGame, gamePieces);
+
+        Menu menu = new Menu();
+        menu.setGrid(this);
+        setJMenuBar(menu);
 
         setVisible(true);
     }
@@ -42,8 +42,8 @@ public class Grid extends JFrame {
     private void constructBoard(boolean fixedGame, GamePiece[][] gamePieces){
         if(!fixedGame){
             Random random = new Random();
-            for (int i = gamePieces.length - 1; i > 0; i--) {
-                for (int j = gamePieces[i].length - 1; j > 0; j--) {
+            for (int i = gamePieces.length - 1; i >= 0; i--) {
+                for (int j = gamePieces[i].length - 1; j >= 0; j--) {
                     int m = random.nextInt(i + 1);
                     int n = random.nextInt(j + 1);
 
@@ -52,15 +52,46 @@ public class Grid extends JFrame {
                     gamePieces[m][n] = temp;
                 }
             }
+
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
+                    add(gamePieces[i][j]);
+                }
+            }
         }else{
-            GamePiece temp = gamePieces[0][0];
-            gamePieces[0][0] = gamePieces[1][0];
-            gamePieces[1][0] = temp;
+            GamePiece temp = gamePieces[rows - 1][columns - 1];
+            gamePieces[rows - 1][columns - 1] = gamePieces[rows - 1][columns - 2];
+            gamePieces[rows - 1][columns - 2] = temp;
         }
         for(int i = 0; i < rows; i++){
             for (int j = 0; j < columns; j++){
-                add(gamePieces[i][j]);
+                add(gamePieces[j][i]);
             }
         }
     }
+
+    void newGame(boolean isGameFixed){
+        for(GamePiece[] g: gamePieces){
+            for(GamePiece gp: g){
+                remove(gp);
+            }
+        }
+        if(isGameFixed){
+            fixedGame = true;
+        }else{
+            fixedGame = false;
+        }
+        createGamePieces(gamePieces);
+        constructBoard(fixedGame, gamePieces);
+
+        for(GamePiece[] g: gamePieces){
+            for(GamePiece gp: g){
+                add(gp);
+            }
+        }
+
+        revalidate();
+        repaint();
+    }
+
 }
