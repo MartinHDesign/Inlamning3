@@ -3,9 +3,9 @@ import java.awt.*;
 import java.util.Random;
 
 public class Grid extends JFrame {
+    private static final int MENU_OFFSET = 30;
     private final int HORIZONTAL_SPACING = 151;
     private final int VERTICAL_SPACING = 155;
-    private final int MENU_OFFSET = 30;
     private int rows = 4;
     private int columns = 4;
     GamePiece[][] gamePieces = new GamePiece[columns][rows];
