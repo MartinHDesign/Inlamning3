@@ -2,14 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePiece extends JPanel {
-    int xCoordinate;
-    int yCoordinate;
     int value;
     ImageIcon image;
 
-    GamePiece(int x, int y, int value)  {
-        this.xCoordinate = x;
-        this.yCoordinate = y;
+    GamePiece(int value)  {
         this.value = value;
         this.setSize(150, 150);
         if(value != 0) {
@@ -40,23 +36,6 @@ public class GamePiece extends JPanel {
                 g.drawString(String.valueOf(value), textX, textY);
             }
         }
-    }
-
-
-    public int getxCoordinate() {
-        return xCoordinate;
-    }
-
-    public void setxCoordinate(int xCoordinate) {
-        this.xCoordinate = xCoordinate;
-    }
-
-    public int getyCoordinate() {
-        return yCoordinate;
-    }
-
-    public void setyCoordinate(int yCoordinate) {
-        this.yCoordinate = yCoordinate;
     }
 
     public int getValue() {
