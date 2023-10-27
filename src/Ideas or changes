@@ -36,3 +36,10 @@
     Jag hade tänkt fel med logiken, som du skrev. Menade att det skulle hamna i ordning med
     nollan på slutet och sen kasta om de två sista så att man var ett drag från att vinna. De skapas nu så att man
     är ett drag från vinst
+27/10 (martin):
+    Vi får göra en hotfix branch nästa gång en hotfix behövs
+
+    Jag var tvungen att kommentera bort din kod i constructBoard då jag också använder den metoden
+    vi får komma på en annan lösning för riggat spel
+
+

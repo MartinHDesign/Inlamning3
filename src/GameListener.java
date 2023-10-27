@@ -1,6 +1,6 @@
 import java.awt.event.*;
 
-public class GameListener implements MouseListener {
+public class GameListener extends MouseAdapter {
     public GameListener(GamePiece[][] gamePieces , Grid activeGrid) {
         this.gamePieces = gamePieces;
         this.activeGrid = activeGrid;
@@ -18,28 +18,13 @@ public class GameListener implements MouseListener {
         moveGamePiece(e);
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
     public void moveGamePiece(MouseEvent e){
         int[] indexZero = findIndex(0);
         int[] indexOfGamePiece = findIndex(((GamePiece) e.getSource()).getValue());
 
         if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece)) {
             switchPositionGamePieces(indexZero, indexOfGamePiece);
-            activeGrid.constructBoard(true,gamePieces);
+            activeGrid.constructBoard(activeGrid.isFixedGame(),gamePieces);
         }
         activeGrid.revalidate();
     }

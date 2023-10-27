@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.Random;
 
 public class Grid extends JFrame {
@@ -9,6 +8,8 @@ public class Grid extends JFrame {
     private int rows = 4;
     private int columns = 4;
     private boolean fixedGame = true;
+
+
     private GamePiece[][] gamePieces = new GamePiece[columns][rows];
 
 
@@ -72,8 +73,7 @@ public class Grid extends JFrame {
     public void setGamePieces(GamePiece[][] gamePieces) {
         this.gamePieces = gamePieces;
     }
-
-    public GamePiece[][] getGamePieces() {
-        return gamePieces;
+    public boolean isFixedGame() {
+        return fixedGame;
     }
 }
