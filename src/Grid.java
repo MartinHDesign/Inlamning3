@@ -10,10 +10,10 @@ public class Grid extends JFrame {
     private final int VERTICAL_SPACING = 155;
     private int rows = 4;
     private int columns = 4;
+    GamePiece[][] gamePieces = new GamePiece[columns][rows];
     private boolean fixedGame = false;
 
     public Grid(){
-        GamePiece[][] gamePieces = new GamePiece[columns][rows];
         setLayout(new GridLayout(rows, columns));
         setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING);
         setLocationRelativeTo(null);
@@ -22,6 +22,10 @@ public class Grid extends JFrame {
         createGamePieces(gamePieces);
 
         constructBoard(fixedGame, gamePieces);
+
+        Menu menu = new Menu();
+        menu.setGrid(this);
+        setJMenuBar(menu);
 
         setVisible(true);
     }
@@ -68,5 +72,28 @@ public class Grid extends JFrame {
         }
     }
 
+    void newGame(boolean isGameFixed){
+        for(GamePiece[] g: gamePieces){
+            for(GamePiece gp: g){
+                remove(gp);
+            }
+        }
+        if(isGameFixed){
+            fixedGame = true;
+        }else{
+            fixedGame = false;
+        }
+        createGamePieces(gamePieces);
+        constructBoard(fixedGame, gamePieces);
+
+        for(GamePiece[] g: gamePieces){
+            for(GamePiece gp: g){
+                add(gp);
+            }
+        }
+
+        revalidate();
+        repaint();
+    }
 
 }
