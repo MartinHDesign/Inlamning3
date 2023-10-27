@@ -38,8 +38,8 @@ public class Grid extends JFrame {
         }
     }
     private void addMouseListener(GamePiece[][] gamePieces){
-        for(int i = 0; i < columns; i++) {
-            for (int j = 0; j < rows; j++) {
+        for(int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 gamePieces[i][j].addMouseListener(new GameListener());
             }
         }

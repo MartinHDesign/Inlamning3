@@ -1,7 +1,7 @@
 import java.awt.event.*;
 
-public class GameListener implements MouseListener {
-    private Grid g;
+public class GameListener extends Grid implements MouseListener {
+
     @Override
     public void mouseClicked(MouseEvent e) {
         GamePiece temp = (GamePiece) e.getSource();
@@ -40,7 +40,7 @@ public class GameListener implements MouseListener {
     }
     public int[] findIndex(int numberToFind){
         int[] indexOf = new int[2];
-        GamePiece[][] temp = g.getGamePieces();
+        GamePiece[][] temp = getGamePieces();
         for (int i = 0; i < temp.length; i++) {
             for (int j = 0; j < temp[i].length; j++) {
                 if (temp[i][j].getValue() == numberToFind){
@@ -52,7 +52,7 @@ public class GameListener implements MouseListener {
         return indexOf;
     }
     public void switchPositionGamePieces(int[] indexOfZero, int[] indexOfGamePiece){
-        GamePiece[][] tempListOfGamePieces = g.getGamePieces();
+        GamePiece[][] tempListOfGamePieces = getGamePieces();
 
         GamePiece zeroGamePiece = tempListOfGamePieces[indexOfZero[0]][indexOfZero[1]];
         GamePiece clickedGamePiece = tempListOfGamePieces[indexOfGamePiece[0]][indexOfGamePiece[1]];
@@ -60,7 +60,7 @@ public class GameListener implements MouseListener {
         tempListOfGamePieces[indexOfZero[0]][indexOfZero[1]] = clickedGamePiece;
         tempListOfGamePieces[indexOfGamePiece[0]][indexOfGamePiece[1]] = zeroGamePiece;
 
-        g.setGamePieces(tempListOfGamePieces);
+        setGamePieces(tempListOfGamePieces);
 
     }
 
