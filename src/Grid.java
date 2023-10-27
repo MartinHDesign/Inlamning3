@@ -104,24 +104,15 @@ public class Grid extends JFrame {
 
     public void checkWin(GamePiece[][] gamePieces){
         int currentValue = 0;
-        boolean keepChecking = true;
         for(GamePiece[] g: gamePieces){
-            if(keepChecking) {
                 for (GamePiece gp : g) {
-                    if(gp.getValue() != 0) {
-                        if (gp.getValue() == currentValue + 1) {
-                            currentValue = gp.getValue();
-                        } else {
-                            keepChecking = false;
-                            break;
-                        }
+                    if (gp.getValue() != 0 && gp.getValue() != currentValue + 1) {
+                        return;
                     }
+                    currentValue = gp.getValue();
                 }
             }
-        }
-        if(keepChecking){
-            win();
-        }
+        win();
     }
 
     private void win(){
