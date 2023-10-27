@@ -58,10 +58,6 @@ public class Grid extends JFrame {
                     add(gamePieces[i][j]);
                 }
             }
-        }else{
-            GamePiece temp = gamePieces[rows - 1][columns - 1];
-            gamePieces[rows - 1][columns - 1] = gamePieces[rows - 1][columns - 2];
-            gamePieces[rows - 1][columns - 2] = temp;
         }
         for(int i = 0; i < rows; i++){
             for (int j = 0; j < columns; j++){
