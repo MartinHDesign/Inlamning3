@@ -54,8 +54,8 @@ public class Grid extends JFrame {
             }
         }else{
             GamePiece temp = gamePieces[0][0];
-            gamePieces[0][0] = gamePieces[0][1];
-            gamePieces[0][1] = temp;
+            gamePieces[0][0] = gamePieces[1][0];
+            gamePieces[1][0] = temp;
         }
         for(int i = 0; i < rows; i++){
             for (int j = 0; j < columns; j++){
