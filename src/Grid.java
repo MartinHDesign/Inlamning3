@@ -40,14 +40,20 @@ public class Grid extends JFrame {
     private void constructBoard(boolean fixedGame, GamePiece[][] gamePieces){
         if(!fixedGame){
             Random random = new Random();
-            for (int i = gamePieces.length - 1; i > 0; i--) {
-                for (int j = gamePieces[i].length - 1; j > 0; j--) {
+            for (int i = gamePieces.length - 1; i >= 0; i--) {
+                for (int j = gamePieces[i].length - 1; j >= 0; j--) {
                     int m = random.nextInt(i + 1);
                     int n = random.nextInt(j + 1);
 
                     GamePiece temp = gamePieces[i][j];
                     gamePieces[i][j] = gamePieces[m][n];
                     gamePieces[m][n] = temp;
+                }
+            }
+
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
+                    add(gamePieces[i][j]);
                 }
             }
         }else{
