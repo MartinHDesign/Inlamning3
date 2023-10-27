@@ -27,6 +27,7 @@ public class GameListener extends MouseAdapter {
             activeGrid.constructBoard(true,gamePieces);
         }
         activeGrid.revalidate();
+        activeGrid.checkWin(gamePieces);
     }
 
     public boolean zeroAdjacentGamePiece(int[] indexZero, int[] indexOfGamePiece){
@@ -58,7 +59,6 @@ public class GameListener extends MouseAdapter {
         tempListOfGamePieces[indexOfGamePiece[0]][indexOfGamePiece[1]] = zeroGamePiece;
 
         activeGrid.setGamePieces(tempListOfGamePieces);
-        activeGrid.checkWin(gamePieces);
     }
 
 

@@ -81,11 +81,7 @@ public class Grid extends JFrame {
                 remove(gp);
             }
         }
-        if(isGameFixed){
-            fixedGame = true;
-        }else{
-            fixedGame = false;
-        }
+        fixedGame = isGameFixed;
         createGamePieces(gamePieces);
         constructBoard(fixedGame, gamePieces);
         addMouseListener(gamePieces);
@@ -133,6 +129,5 @@ public class Grid extends JFrame {
         }
         revalidate();
         repaint();
-
     }
 }
