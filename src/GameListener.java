@@ -1,49 +1,35 @@
 import java.awt.event.*;
 
-public class GameListener implements ActionListener {
+public class GameListener implements MouseListener {
     private Grid g;
-    MouseListener mouseListener = new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            super.mouseClicked(e);
-            GamePiece temp = (GamePiece) e.getSource();
-            int[] indexZero = findIndex(0);
-            int[] indexOfGamePiece = findIndex(temp.getValue());
-
-            if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece))
-                switchPositionGamePieces(indexZero,indexOfGamePiece);
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-            super.mousePressed(e);
-            GamePiece temp = (GamePiece) e.getSource();
-            int[] indexZero = findIndex(0);
-            int[] indexOfGamePiece = findIndex(temp.getValue());
-
-            if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece))
-                switchPositionGamePieces(indexZero,indexOfGamePiece);
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-            super.mouseReleased(e);
-            GamePiece temp = (GamePiece) e.getSource();
-            int[] indexZero = findIndex(0);
-            int[] indexOfGamePiece = findIndex(temp.getValue());
-
-            if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece))
-                switchPositionGamePieces(indexZero,indexOfGamePiece);
-        }
-    };
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mouseClicked(MouseEvent e) {
         GamePiece temp = (GamePiece) e.getSource();
         int[] indexZero = findIndex(0);
         int[] indexOfGamePiece = findIndex(temp.getValue());
 
         if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece))
             switchPositionGamePieces(indexZero,indexOfGamePiece);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 
     public boolean zeroAdjacentGamePiece(int[] indexZero, int[] indexOfGamePiece){
@@ -77,5 +63,6 @@ public class GameListener implements ActionListener {
         g.setGamePieces(tempListOfGamePieces);
 
     }
+
 
 }
