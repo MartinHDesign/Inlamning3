@@ -11,9 +11,7 @@ public class Grid extends JFrame {
     private boolean fixedGame = false;
     GamePiece[][] gamePieces = new GamePiece[columns][rows];
 
-    public GamePiece[][] getGamePieces() {
-        return gamePieces;
-    }
+
 
     public Grid(){
         setLayout(new GridLayout(rows, columns));
@@ -62,5 +60,12 @@ public class Grid extends JFrame {
                 add(gamePieces[i][j]);
             }
         }
+    }
+    public void setGamePieces(GamePiece[][] gamePieces) {
+        this.gamePieces = gamePieces;
+    }
+
+    public GamePiece[][] getGamePieces() {
+        return gamePieces;
     }
 }

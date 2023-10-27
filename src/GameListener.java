@@ -1,24 +1,56 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class GameListener implements ActionListener {
-    Grid g = new Grid();
+    private Grid g;
+    MouseListener mouseListener = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            super.mouseClicked(e);
+            GamePiece temp = (GamePiece) e.getSource();
+            int[] indexZero = findIndex(0);
+            int[] indexOfGamePiece = findIndex(temp.getValue());
+
+            if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece))
+                switchPositionGamePieces(indexZero,indexOfGamePiece);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            super.mousePressed(e);
+            GamePiece temp = (GamePiece) e.getSource();
+            int[] indexZero = findIndex(0);
+            int[] indexOfGamePiece = findIndex(temp.getValue());
+
+            if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece))
+                switchPositionGamePieces(indexZero,indexOfGamePiece);
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            super.mouseReleased(e);
+            GamePiece temp = (GamePiece) e.getSource();
+            int[] indexZero = findIndex(0);
+            int[] indexOfGamePiece = findIndex(temp.getValue());
+
+            if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece))
+                switchPositionGamePieces(indexZero,indexOfGamePiece);
+        }
+    };
     @Override
     public void actionPerformed(ActionEvent e) {
         GamePiece temp = (GamePiece) e.getSource();
         int[] indexZero = findIndex(0);
         int[] indexOfGamePiece = findIndex(temp.getValue());
 
-        if (indexZero[0] == indexOfGamePiece[0]-1 && indexZero[1] == indexOfGamePiece[1]){
-            //byt plats norr kod kommer snart
-        } else if (indexZero[0] == indexOfGamePiece[0] && indexZero[1] == indexOfGamePiece[1]+1) {
-            //byt plats öst kod kommer snart
-        } else if (indexZero[0] == indexOfGamePiece[0]+1 && indexZero[1] == indexOfGamePiece[1]) {
-            //byt plats söder kod kommer snart
-        } else if (indexZero[0] == indexOfGamePiece[0] && indexZero[1] == indexOfGamePiece[1]-1) {
-            //byt plats väster kod kommer snart
-        }
+        if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece))
+            switchPositionGamePieces(indexZero,indexOfGamePiece);
+    }
 
+    public boolean zeroAdjacentGamePiece(int[] indexZero, int[] indexOfGamePiece){
+        return (indexZero[0] == indexOfGamePiece[0] - 1 && indexZero[1] == indexOfGamePiece[1]) ||
+                (indexZero[0] == indexOfGamePiece[0] && indexZero[1] == indexOfGamePiece[1] + 1) ||
+                (indexZero[0] == indexOfGamePiece[0] + 1 && indexZero[1] == indexOfGamePiece[1]) ||
+                (indexZero[0] == indexOfGamePiece[0] && indexZero[1] == indexOfGamePiece[1] - 1);
     }
     public int[] findIndex(int numberToFind){
         int[] indexOf = new int[2];
@@ -32,6 +64,18 @@ public class GameListener implements ActionListener {
             }
         }
         return indexOf;
+    }
+    public void switchPositionGamePieces(int[] indexOfZero, int[] indexOfGamePiece){
+        GamePiece[][] tempListOfGamePieces = g.getGamePieces();
+
+        GamePiece zeroGamePiece = tempListOfGamePieces[indexOfZero[0]][indexOfZero[1]];
+        GamePiece clickedGamePiece = tempListOfGamePieces[indexOfGamePiece[0]][indexOfGamePiece[1]];
+
+        tempListOfGamePieces[indexOfZero[0]][indexOfZero[1]] = clickedGamePiece;
+        tempListOfGamePieces[indexOfGamePiece[0]][indexOfGamePiece[1]] = zeroGamePiece;
+
+        g.setGamePieces(tempListOfGamePieces);
+
     }
 
 }
