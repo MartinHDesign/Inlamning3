@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.Random;
 
 public class Grid extends JFrame {
@@ -116,10 +117,36 @@ public class Grid extends JFrame {
     }
 
     private void win(){
-        removeGamePiecesFromBoard();
-        setLayout(new BorderLayout());
-        add(winLabel, BorderLayout.CENTER);
-        revalidate();
-        repaint();
+        Timer timer = new Timer(100, new ActionListener() {
+            private int row = 0;
+            private int column = 0;
+            private boolean finished = false;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (finished) {
+                    ((Timer) e.getSource()).stop();
+                    removeGamePiecesFromBoard();
+                    setLayout(new BorderLayout());
+                    add(winLabel, BorderLayout.CENTER);
+                    revalidate();
+                    repaint();
+                } else {
+                    gamePieces[row][column].setImage(new ImageIcon("src/images/WinTile.png"));
+                    revalidate();
+                    repaint();
+                    column++;
+                    if (column >= gamePieces[row].length) {
+                        column = 0;
+                        row++;
+                        if (row >= gamePieces.length) {
+                            finished = true;
+                        }
+                    }
+                }
+            }
+        });
+
+        timer.start();
     }
 }
