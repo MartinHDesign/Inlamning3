@@ -38,6 +38,14 @@ public class GamePiece extends JPanel {
         }
     }
 
+    public ImageIcon getImage() {
+        return image;
+    }
+
+    public void setImage(ImageIcon image) {
+        this.image = image;
+    }
+
     public int getValue() {
         return value;
     }
