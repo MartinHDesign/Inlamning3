@@ -13,6 +13,7 @@ public class Grid extends JFrame {
 
     public Grid(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(600, 600 + VERTICAL_OFFSET);
 
         createNewGameState();
 
@@ -27,7 +28,6 @@ public class Grid extends JFrame {
     private void createNewGameState(){
         gamePieces = new GamePiece[rows][columns];
         setLayout(new GridLayout(rows,columns));
-        setSize(600, 600 + VERTICAL_OFFSET);
         createGamePieces(gamePieces);
         constructBoard(fixedGame, gamePieces);
         addMouseListener(gamePieces);
@@ -146,7 +146,6 @@ public class Grid extends JFrame {
         removeGamePiecesFromBoard();
         setLayout(new BorderLayout());
         add(winLabel, BorderLayout.CENTER);
-        pack();
         revalidate();
         repaint();
     }
