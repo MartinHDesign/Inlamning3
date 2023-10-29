@@ -7,8 +7,8 @@ public class Grid extends JFrame {
     private static final int MENU_OFFSET = 30;
     private final int HORIZONTAL_SPACING = 151;
     private final int VERTICAL_SPACING = 155;
-    private int rows = 4;
-    private int columns = 4;
+    private int rows = 3;
+    private int columns = 3;
     private GamePiece[][] gamePieces = new GamePiece[rows][columns];
     private boolean fixedGame = false;
     private final JLabel winLabel = new JLabel(new ImageIcon("src/images/You win.gif"));
@@ -68,6 +68,7 @@ public class Grid extends JFrame {
 
     public void newGame(boolean isGameFixed){
         remove(winLabel);
+        setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING + MENU_OFFSET);
         setLayout(new GridLayout(rows,columns));
 
         removeGamePiecesFromBoard();
@@ -129,6 +130,7 @@ public class Grid extends JFrame {
                     removeGamePiecesFromBoard();
                     setLayout(new BorderLayout());
                     add(winLabel, BorderLayout.CENTER);
+                    pack();
                     revalidate();
                     repaint();
                 } else {
