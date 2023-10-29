@@ -8,9 +8,8 @@ public class Grid extends JFrame {
     private GamePiece[][] gamePieces;
     private boolean fixedGame = false;
     private final JLabel winLabel = new JLabel(new ImageIcon("src/images/You win.gif"));
-
-    public int rows = 4;
-    public int columns = 4;
+    private int rows = 4;
+    private int columns = 4;
 
     public Grid(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -99,9 +98,6 @@ public class Grid extends JFrame {
         }
     }
 
-    public void setGamePieces(GamePiece[][] gamePieces) {
-        this.gamePieces = gamePieces;
-    }
 
     public void checkWin(GamePiece[][] gamePieces){
         int currentValue = 0;
@@ -126,12 +122,7 @@ public class Grid extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (finished) {
                     ((Timer) e.getSource()).stop();
-                    removeGamePiecesFromBoard();
-                    setLayout(new BorderLayout());
-                    add(winLabel, BorderLayout.CENTER);
-                    pack();
-                    revalidate();
-                    repaint();
+                    playWinAnimation();
                 } else {
                     gamePieces[row][column].setImage(new ImageIcon("src/images/WinTile.png"), rows, columns);
                     revalidate();
@@ -140,7 +131,7 @@ public class Grid extends JFrame {
                     if (column >= gamePieces[row].length) {
                         column = 0;
                         row++;
-                        if (row >= gamePieces.length) {
+                        if (row == gamePieces.length) {
                             finished = true;
                         }
                     }
@@ -149,5 +140,23 @@ public class Grid extends JFrame {
         });
 
         timer.start();
+    }
+
+    private void playWinAnimation() {
+        removeGamePiecesFromBoard();
+        setLayout(new BorderLayout());
+        add(winLabel, BorderLayout.CENTER);
+        pack();
+        revalidate();
+        repaint();
+    }
+
+    public void setGamePieces(GamePiece[][] gamePieces) {
+        this.gamePieces = gamePieces;
+    }
+
+    public void setRowsAndColumns(int rows, int columns){
+        this.rows = rows;
+        this.columns = columns;
     }
 }

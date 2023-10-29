@@ -57,8 +57,7 @@ public class Menu extends JMenuBar {
     }
 
     private void setGridSize(int size){
-        grid.rows = size;
-        grid.columns = size;
+        grid.setRowsAndColumns(size, size);
         grid.newGame(false);
     }
 
