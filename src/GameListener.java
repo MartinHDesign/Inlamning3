@@ -1,6 +1,5 @@
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -146,9 +145,22 @@ public class GameListener extends MouseAdapter {
             tempRowIndex ++;
         }
     }
-    public void moveArbitrarilyGamePiecesWest(int[] indexOfZero,int[] indexOfGamePiece){
+    public void moveArbitrarilyGamePiecesWest(int[] indexZero,int[] indexOfGamePiece){
+        List<GamePiece> gamePiecesToMoveWest = new ArrayList<>();
+        GamePiece gamePieceZero = gamePieces[indexZero[0]][indexZero[1]];
 
+        for (int i = indexZero[1]-1; i > indexOfGamePiece[1] - 1; i--) {
+            GamePiece temp = gamePieces[indexZero[0]][i];
+            gamePiecesToMoveWest.add(temp);
+        }
+
+        gamePiecesToMoveWest.add(gamePieceZero);
+        Collections.reverse(gamePiecesToMoveWest);
+
+        int tempRowIndex = 0;
+        for (int i = indexOfGamePiece[1]; i < indexZero[1]+1; i++) {
+            gamePieces[indexZero[0]][i] = gamePiecesToMoveWest.get(tempRowIndex);
+            tempRowIndex ++;
+        }
     }
-
-
 }
