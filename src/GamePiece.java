@@ -22,16 +22,16 @@ public class GamePiece extends JPanel {
             image.paintIcon(this, g, 0, 0);
 
             if(value != 0) {
-                g.setFont(new Font("Arial", Font.BOLD, 100));
+                g.setFont(new Font("Arial", Font.BOLD, 78));
                 g.setColor(Color.BLACK);
 
                 int textX;
                 if (value < 10) {
-                    textX = 40;
+                    textX = 48;
                 } else {
-                    textX = 10;
+                    textX = 24;
                 }
-                int textY = 110;
+                int textY = 100;
 
                 g.drawString(String.valueOf(value), textX, textY);
             }
