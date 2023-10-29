@@ -7,28 +7,42 @@ public class Grid extends JFrame {
     private static final int MENU_OFFSET = 30;
     private final int HORIZONTAL_SPACING = 151;
     private final int VERTICAL_SPACING = 155;
-    private int rows = 3;
-    private int columns = 3;
+    private int rows = 4;
+    private int columns = 4;
     private GamePiece[][] gamePieces = new GamePiece[rows][columns];
     private boolean fixedGame = false;
     private final JLabel winLabel = new JLabel(new ImageIcon("src/images/You win.gif"));
 
     public Grid(){
-        setLayout(new GridLayout(rows, columns));
-        setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING + MENU_OFFSET);
-        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        createGamePieces(gamePieces);
-
-        constructBoard(fixedGame, gamePieces);
-        addMouseListener(gamePieces);
+        createNewGameState();
 
         Menu menu = new Menu();
         menu.setGrid(this);
         setJMenuBar(menu);
 
+        setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private void createNewGameState(){
+        setLayout(new GridLayout(rows,columns));
+        setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING + MENU_OFFSET);
+        createGamePieces(gamePieces);
+        constructBoard(fixedGame, gamePieces);
+        addMouseListener(gamePieces);
+    }
+
+    public void newGame(boolean isGameFixed){
+        remove(winLabel);
+        removeGamePiecesFromBoard();
+        fixedGame = isGameFixed;
+        createNewGameState();
+        addGamePiecesToBoard();
+
+        revalidate();
+        repaint();
     }
 
     private void createGamePieces(GamePiece[][] gamePieces) {
@@ -66,23 +80,6 @@ public class Grid extends JFrame {
         addGamePiecesToBoard();
     }
 
-    public void newGame(boolean isGameFixed){
-        remove(winLabel);
-        setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING + MENU_OFFSET);
-        setLayout(new GridLayout(rows,columns));
-
-        removeGamePiecesFromBoard();
-
-        fixedGame = isGameFixed;
-        createGamePieces(gamePieces);
-        constructBoard(fixedGame, gamePieces);
-        addMouseListener(gamePieces);
-
-        addGamePiecesToBoard();
-
-        revalidate();
-        repaint();
-    }
 
     private void addGamePiecesToBoard() {
         for(GamePiece[] row: gamePieces){
