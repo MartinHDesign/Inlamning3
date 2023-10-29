@@ -159,4 +159,7 @@ public class Grid extends JFrame {
         this.rows = rows;
         this.columns = columns;
     }
+    public int getRows() {
+        return rows;
+    }
 }
