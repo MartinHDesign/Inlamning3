@@ -32,7 +32,7 @@ public class Menu extends JMenuBar {
     private void gameSettingsMenu(){
         JMenu gameSettingsMenu = new JMenu("Game settings");
 
-        JMenu gridSizePopMenu = new JMenu("Grid size");
+        JMenu gridSizeMenu = new JMenu("Grid size");
 
         JMenuItem Three = new JMenuItem ("3x3");
         Three.addActionListener(e -> setGridSize(3));
@@ -46,12 +46,12 @@ public class Menu extends JMenuBar {
         JMenuItem Six = new JMenuItem("6x6");
         Six.addActionListener(e -> setGridSize(6));
 
-        gridSizePopMenu.add(Three);
-        gridSizePopMenu.add(Four);
-        gridSizePopMenu.add(Five);
-        gridSizePopMenu.add(Six);
+        gridSizeMenu.add(Three);
+        gridSizeMenu.add(Four);
+        gridSizeMenu.add(Five);
+        gridSizeMenu.add(Six);
 
-        gameSettingsMenu.add(gridSizePopMenu);
+        gameSettingsMenu.add(gridSizeMenu);
 
         add(gameSettingsMenu);
     }
