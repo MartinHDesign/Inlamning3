@@ -5,8 +5,9 @@ public class GameListener extends MouseAdapter {
         this.gamePieces = gamePieces;
         this.activeGrid = activeGrid;
     }
-    GamePiece[][] gamePieces;
-    Grid activeGrid;
+    private GamePiece[][] gamePieces;
+    private Grid activeGrid;
+    private boolean moveArbitrarilyGamePieces = false;
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -59,6 +60,38 @@ public class GameListener extends MouseAdapter {
         tempListOfGamePieces[indexOfGamePiece[0]][indexOfGamePiece[1]] = zeroGamePiece;
 
         activeGrid.setGamePieces(tempListOfGamePieces);
+    }
+
+    public boolean zeroIsInSameColum(int[] indexZero, int[] indexOfGamePiece){
+        return indexZero[1] == indexOfGamePiece[1];
+    }
+    public boolean zeroIsInSameRow(int[] indexZero, int[] indexOfGamePiece){
+        return indexZero[0] == indexOfGamePiece[0];
+    }
+
+    public boolean zeroBrickDirectionNorth(int[] indexZero, int[] indexOfGamePiece){
+        return indexZero[0] < indexOfGamePiece[0];
+    }
+    public boolean zeroBrickDirectionEast(int[] indexZero, int[] indexOfGamePiece){
+        return indexZero[1] < indexOfGamePiece[1];
+    }
+    public boolean zeroBrickDirectionSouth(int[] indexZero, int[] indexOfGamePiece){
+        return indexZero[0] > indexOfGamePiece[0];
+    }
+    public boolean zeroBrickDirectionWest(int[] indexZero, int[] indexOfGamePiece){
+        return indexZero[1] > indexOfGamePiece[1];
+    }
+    public void moveArbitrarilyGamePiecesNorth(){
+
+    }
+    public void moveArbitrarilyGamePiecesEast(){
+
+    }
+    public void moveArbitrarilyGamePiecesSouth(){
+
+    }
+    public void moveArbitrarilyGamePiecesWest(){
+
     }
 
 
