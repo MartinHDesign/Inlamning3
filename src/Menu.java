@@ -23,13 +23,14 @@ public class Menu extends JMenuBar {
                 
                 Your goal in this game is to have all of the tiles
                 in sequential order from 1-15.
-                The count skips to the next row once it has hit the end of the current row.
+                The count skips to the next row once it has hit the end of the current row. 
                 In the above example the next number counted after [4 ] would be [5 ].
                 
                 You are allowed to move a tile if it has an empty tile next to it.
                 You do this by clicking the adjacent tile.
-                If you click the 12 in the above example it would move to the empty tile
-                and the tile you clicked would now be empty."""));
+                If you click [12] in the above example it would move to the empty tile [    ].
+                and the tile you clicked would now be empty.""",
+                "Game Rules", JOptionPane.PLAIN_MESSAGE));
 
         JMenuItem about = new JMenuItem("About");
         about.addActionListener(e -> JOptionPane.showMessageDialog(null, """
@@ -37,7 +38,8 @@ public class Menu extends JMenuBar {
                 Martin Harrysson
                 Daniel Isaksson
                 
-                Objektorienterad programmering - JAVA23"""));
+                Objektorienterad programmering - JAVA23""",
+                "About", JOptionPane.PLAIN_MESSAGE));
 
         helpMenu.add(gameRules);
         helpMenu.add(about);

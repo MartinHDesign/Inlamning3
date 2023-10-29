@@ -1,12 +1,13 @@
 import java.awt.event.*;
 
 public class GameListener extends MouseAdapter {
+    GamePiece[][] gamePieces;
+    Grid activeGrid;
+
     public GameListener(GamePiece[][] gamePieces , Grid activeGrid) {
         this.gamePieces = gamePieces;
         this.activeGrid = activeGrid;
     }
-    GamePiece[][] gamePieces;
-    Grid activeGrid;
 
     @Override
     public void mouseClicked(MouseEvent e) {

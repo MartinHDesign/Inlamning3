@@ -4,12 +4,12 @@ import java.awt.event.*;
 import java.util.Random;
 
 public class Grid extends JFrame {
-    private static final int MENU_OFFSET = 30;
+    private static final int VERTICAL_OFFSET = 48;
     private final int HORIZONTAL_SPACING = 151;
-    private final int VERTICAL_SPACING = 155;
+    private final int VERTICAL_SPACING = 151;
     private int rows = 4;
     private int columns = 4;
-    private GamePiece[][] gamePieces = new GamePiece[rows][columns];
+    private GamePiece[][] gamePieces;
     private boolean fixedGame = false;
     private final JLabel winLabel = new JLabel(new ImageIcon("src/images/You win.gif"));
 
@@ -27,8 +27,9 @@ public class Grid extends JFrame {
     }
 
     private void createNewGameState(){
+        gamePieces = new GamePiece[rows][columns];
         setLayout(new GridLayout(rows,columns));
-        setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING + MENU_OFFSET);
+        setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING + VERTICAL_OFFSET);
         createGamePieces(gamePieces);
         constructBoard(fixedGame, gamePieces);
         addMouseListener(gamePieces);
