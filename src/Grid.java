@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.util.Random;
 
 public class Grid extends JFrame {
+    private static final int SIZE_OF_BOARD = 600;
     private static final int VERTICAL_OFFSET = 48;
     private GamePiece[][] gamePieces;
     private boolean fixedGame = false;
@@ -13,7 +14,7 @@ public class Grid extends JFrame {
 
     public Grid(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(600, 600 + VERTICAL_OFFSET);
+        setSize(SIZE_OF_BOARD, SIZE_OF_BOARD + VERTICAL_OFFSET);
 
         createNewGameState();
 
