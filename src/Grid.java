@@ -5,13 +5,12 @@ import java.util.Random;
 
 public class Grid extends JFrame {
     private static final int VERTICAL_OFFSET = 48;
-    private final int HORIZONTAL_SPACING = 151;
-    private final int VERTICAL_SPACING = 151;
-    private int rows = 4;
-    private int columns = 4;
     private GamePiece[][] gamePieces;
     private boolean fixedGame = false;
     private final JLabel winLabel = new JLabel(new ImageIcon("src/images/You win.gif"));
+
+    public int rows = 4;
+    public int columns = 4;
 
     public Grid(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -29,7 +28,7 @@ public class Grid extends JFrame {
     private void createNewGameState(){
         gamePieces = new GamePiece[rows][columns];
         setLayout(new GridLayout(rows,columns));
-        setSize(columns * HORIZONTAL_SPACING, rows * VERTICAL_SPACING + VERTICAL_OFFSET);
+        setSize(600, 600 + VERTICAL_OFFSET);
         createGamePieces(gamePieces);
         constructBoard(fixedGame, gamePieces);
         addMouseListener(gamePieces);
@@ -50,7 +49,7 @@ public class Grid extends JFrame {
         int counter = 0;
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < columns; j++) {
-                gamePieces[i][j] = new GamePiece(counter);
+                gamePieces[i][j] = new GamePiece(counter, rows, columns);
 
                 counter++;
             }
@@ -59,7 +58,9 @@ public class Grid extends JFrame {
     private void addMouseListener(GamePiece[][] gamePieces){
         for(int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                gamePieces[i][j].addMouseListener(new GameListener(gamePieces, this));
+                if(gamePieces[i][j].getValue() != 0) {
+                    gamePieces[i][j].addMouseListener(new GameListener(gamePieces, this));
+                }
             }
         }
     }
@@ -132,7 +133,7 @@ public class Grid extends JFrame {
                     revalidate();
                     repaint();
                 } else {
-                    gamePieces[row][column].setImage(new ImageIcon("src/images/WinTile.png"));
+                    gamePieces[row][column].setImage(new ImageIcon("src/images/WinTile.png"), rows, columns);
                     revalidate();
                     repaint();
                     column++;

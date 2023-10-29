@@ -4,15 +4,29 @@ import java.awt.*;
 public class GamePiece extends JPanel {
     int value;
     ImageIcon image;
+    int size;
 
-    GamePiece(int value)  {
+    GamePiece(int value, int rows, int columns)  {
         this.value = value;
-        this.setSize(150, 150);
+        size = calculateSize(rows, columns);
+        this.setSize(size, size);
+
+        ImageIcon imageIcon;
         if(value != 0) {
-            this.image = new ImageIcon("src/images/Tile.png");
+            imageIcon = new ImageIcon("src/images/Tile.png");
         }else{
-            this.image = new ImageIcon("src/images/0.png");
+            imageIcon = new ImageIcon("src/images/0.png");
         }
+
+        Image image = imageIcon.getImage();
+        this.image = new ImageIcon(image.getScaledInstance(size, size, Image.SCALE_SMOOTH));
+    }
+
+    private int calculateSize(int rows, int columns){
+        int width = 600 / columns - 1;
+        int height = 600 / rows - 1;
+
+        return Math.min(width, height);
     }
 
 
@@ -22,16 +36,16 @@ public class GamePiece extends JPanel {
             image.paintIcon(this, g, 0, 0);
 
             if(value != 0) {
-                g.setFont(new Font("Arial", Font.BOLD, 78));
+                g.setFont(new Font("Arial", Font.BOLD, size/2));
                 g.setColor(Color.BLACK);
 
                 int textX;
                 if (value < 10) {
-                    textX = 48;
+                    textX = size/3;
                 } else {
-                    textX = 24;
+                    textX = size/5;
                 }
-                int textY = 100;
+                int textY = (int) (size/1.5);
 
                 g.drawString(String.valueOf(value), textX, textY);
             }
@@ -42,8 +56,9 @@ public class GamePiece extends JPanel {
         return image;
     }
 
-    public void setImage(ImageIcon image) {
-        this.image = image;
+    public void setImage(ImageIcon image, int rows, int columns) {
+        Image originalImage = image.getImage();
+        this.image = new ImageIcon(originalImage.getScaledInstance(size, size, Image.SCALE_SMOOTH));
     }
 
     public int getValue() {

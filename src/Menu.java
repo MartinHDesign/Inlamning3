@@ -5,11 +5,12 @@ public class Menu extends JMenuBar {
     private Grid grid;
 
     public Menu() {
-        GameMenu();
-        HelpMenu();
+        gameMenu();
+        helpMenu();
+        gameSettingsMenu();
     }
 
-    private void HelpMenu(){
+    private void helpMenu(){
         JMenu helpMenu = new JMenu("Help");
 
         JMenuItem gameRules = new JMenuItem("Game rules");
@@ -47,7 +48,7 @@ public class Menu extends JMenuBar {
         add(helpMenu);
     }
 
-    private void GameMenu() {
+    private void gameMenu() {
         JMenu gameMenu = new JMenu("Game");
 
         JMenuItem newGame = new JMenuItem("New game");
@@ -66,8 +67,41 @@ public class Menu extends JMenuBar {
         add(gameMenu);
     }
 
+    private void gameSettingsMenu(){
+        JMenu gameSettingsMenu = new JMenu("Game settings");
+
+        JMenu gridSizePopMenu = new JMenu("Grid size");
+
+        JMenuItem Three = new JMenuItem ("3x3");
+        Three.addActionListener(e -> setGridSize(3));
+
+        JMenuItem Four = new JMenuItem ("4x4");
+        Four.addActionListener(e -> setGridSize(4));
+
+        JMenuItem Five = new JMenuItem ("5x5");
+        Five.addActionListener(e -> setGridSize(5));
+
+        JMenuItem Six = new JMenuItem("6x6");
+        Six.addActionListener(e -> setGridSize(6));
+
+        gridSizePopMenu.add(Three);
+        gridSizePopMenu.add(Four);
+        gridSizePopMenu.add(Five);
+        gridSizePopMenu.add(Six);
+
+        gameSettingsMenu.add(gridSizePopMenu);
+
+        add(gameSettingsMenu);
+    }
+
     public void setGrid(Grid grid){
         this.grid = grid;
+    }
+
+    private void setGridSize(int size){
+        grid.rows = size;
+        grid.columns = size;
+        grid.newGame(false);
     }
 
 }
