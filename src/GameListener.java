@@ -111,8 +111,22 @@ public class GameListener extends MouseAdapter {
             tempRowIndex ++;
         }
     }
-    public void moveArbitrarilyGamePiecesEast(int[] indexOfZero,int[] indexOfGamePiece){
+    public void moveArbitrarilyGamePiecesEast(int[] indexZero,int[] indexOfGamePiece){
+        List<GamePiece> gamePiecesToMoveEast = new ArrayList<>();
+        GamePiece gamePieceZero = gamePieces[indexZero[0]][indexZero[1]];
 
+        for (int i = indexZero[1] + 1; i < indexOfGamePiece[1] + 1; i++) {
+            GamePiece temp = gamePieces[indexZero[0]][i];
+            gamePiecesToMoveEast.add(temp);
+        }
+
+        gamePiecesToMoveEast.add(gamePieceZero);
+
+        int tempRowIndex = 0;
+        for (int i = indexZero[1]; i < indexOfGamePiece[1]+1; i++) {
+            gamePieces[indexZero[0]][i] = gamePiecesToMoveEast.get(tempRowIndex);
+            tempRowIndex ++;
+        }
     }
     public void moveArbitrarilyGamePiecesSouth(int[] indexZero, int[] indexOfGamePiece){
         List<GamePiece> gamePiecesToMoveSouth = new ArrayList<>();
