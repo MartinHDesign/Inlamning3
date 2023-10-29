@@ -7,9 +7,9 @@ public class Grid extends JFrame {
     private static final int MENU_OFFSET = 30;
     private final int HORIZONTAL_SPACING = 151;
     private final int VERTICAL_SPACING = 155;
-    private int rows = 4;
+    private int rows = 5;
     private int columns = 4;
-    GamePiece[][] gamePieces = new GamePiece[columns][rows];
+    private GamePiece[][] gamePieces = new GamePiece[rows][columns];
     private boolean fixedGame = false;
     private final JLabel winLabel = new JLabel(new ImageIcon("src/images/You win.gif"));
 
@@ -33,8 +33,8 @@ public class Grid extends JFrame {
 
     private void createGamePieces(GamePiece[][] gamePieces) {
         int counter = 0;
-        for(int i = 0; i < columns; i++){
-            for(int j = 0; j < rows; j++) {
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < columns; j++) {
                 gamePieces[i][j] = new GamePiece(counter);
 
                 counter++;
@@ -54,12 +54,12 @@ public class Grid extends JFrame {
             Random random = new Random();
             for (int i = gamePieces.length - 1; i >= 0; i--) {
                 for (int j = gamePieces[i].length - 1; j >= 0; j--) {
-                    int m = random.nextInt(i + 1);
-                    int n = random.nextInt(j + 1);
+                    int row = random.nextInt(gamePieces.length);
+                    int column = random.nextInt(gamePieces[i].length);
 
                     GamePiece temp = gamePieces[i][j];
-                    gamePieces[i][j] = gamePieces[m][n];
-                    gamePieces[m][n] = temp;
+                    gamePieces[i][j] = gamePieces[row][column];
+                    gamePieces[row][column] = temp;
                 }
             }
         }
