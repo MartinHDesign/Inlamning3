@@ -149,4 +149,7 @@ public class Grid extends JFrame {
 
         timer.start();
     }
+    public int getRows() {
+        return rows;
+    }
 }

@@ -1,4 +1,7 @@
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class GameListener extends MouseAdapter {
     public GameListener(GamePiece[][] gamePieces , Grid activeGrid) {
@@ -7,7 +10,7 @@ public class GameListener extends MouseAdapter {
     }
     private GamePiece[][] gamePieces;
     private Grid activeGrid;
-    private boolean moveArbitrarilyGamePieces = false;
+    private boolean moveArbitrarilyGamePieces = true;
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -16,14 +19,18 @@ public class GameListener extends MouseAdapter {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        moveGamePiece(e);
+//        moveGamePiece(e);
     }
 
     public void moveGamePiece(MouseEvent e){
         int[] indexZero = findIndex(0);
         int[] indexOfGamePiece = findIndex(((GamePiece) e.getSource()).getValue());
 
-        if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece)) {
+        if (moveArbitrarilyGamePieces) {
+            switchPositionArbitraryGamePieces(indexZero, indexOfGamePiece);
+            activeGrid.constructBoard(true,gamePieces);
+        }
+        if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece) && !moveArbitrarilyGamePieces) {
             switchPositionGamePieces(indexZero, indexOfGamePiece);
             activeGrid.constructBoard(true,gamePieces);
         }
@@ -61,34 +68,61 @@ public class GameListener extends MouseAdapter {
 
         activeGrid.setGamePieces(tempListOfGamePieces);
     }
+    public void switchPositionArbitraryGamePieces(int[] indexOfZero, int[] indexOfGamePiece){
+        //north
+        if (zeroIsDirectionNorth(indexOfZero , indexOfGamePiece)){
+            moveArbitrarilyGamePiecesNorth(indexOfZero , indexOfGamePiece);
+        } else if (zeroIsDirectionEast(indexOfZero , indexOfGamePiece)) {
+            moveArbitrarilyGamePiecesEast();
+        } else if (zeroIsDirectionSouth(indexOfZero , indexOfGamePiece)) {
+            moveArbitrarilyGamePiecesSouth(indexOfZero , indexOfGamePiece);
+        } else if (zeroIsDirectionWest(indexOfZero , indexOfGamePiece)) {
+            moveArbitrarilyGamePiecesWest();
+        }
 
-    public boolean zeroIsInSameColum(int[] indexZero, int[] indexOfGamePiece){
-        return indexZero[1] == indexOfGamePiece[1];
-    }
-    public boolean zeroIsInSameRow(int[] indexZero, int[] indexOfGamePiece){
-        return indexZero[0] == indexOfGamePiece[0];
     }
 
-    public boolean zeroBrickDirectionNorth(int[] indexZero, int[] indexOfGamePiece){
-        return indexZero[0] < indexOfGamePiece[0];
-    }
-    public boolean zeroBrickDirectionEast(int[] indexZero, int[] indexOfGamePiece){
-        return indexZero[1] < indexOfGamePiece[1];
-    }
-    public boolean zeroBrickDirectionSouth(int[] indexZero, int[] indexOfGamePiece){
-        return indexZero[0] > indexOfGamePiece[0];
-    }
-    public boolean zeroBrickDirectionWest(int[] indexZero, int[] indexOfGamePiece){
-        return indexZero[1] > indexOfGamePiece[1];
-    }
-    public void moveArbitrarilyGamePiecesNorth(){
+//    public boolean zeroIsInSameColum(int[] indexZero, int[] indexOfGamePiece){
+//        return indexZero[1] == indexOfGamePiece[1];
+//    }
+//    public boolean zeroIsInSameRow(int[] indexZero, int[] indexOfGamePiece){
+//        return indexZero[0] == indexOfGamePiece[0];
+//    }
 
+    public boolean zeroIsDirectionNorth(int[] indexZero, int[] indexOfGamePiece){
+        return (indexZero[1] == indexOfGamePiece[1] && indexZero[0] < indexOfGamePiece[0]);
+    }
+    public boolean zeroIsDirectionEast(int[] indexZero, int[] indexOfGamePiece){
+        return (indexZero[0] == indexOfGamePiece[0] && indexZero[1] < indexOfGamePiece[1]);
+    }
+    public boolean zeroIsDirectionSouth(int[] indexZero, int[] indexOfGamePiece){
+        return (indexZero[1] == indexOfGamePiece[1] && indexZero[0] > indexOfGamePiece[0]);
+    }
+    public boolean zeroIsDirectionWest(int[] indexZero, int[] indexOfGamePiece){
+        return (indexZero[0] == indexOfGamePiece[0] && indexZero[1] > indexOfGamePiece[1]);
+    }
+    public void moveArbitrarilyGamePiecesNorth(int[] indexZero, int[] indexOfGamePiece){
+        List<GamePiece> gamePiecesToMove = new ArrayList<>();
+
+        GamePiece gamePieceZero = gamePieces[indexZero[0]][indexZero[1]];
+
+        for (int i = indexZero[0] + 1; i < indexOfGamePiece[0] + 1; i++) {
+            GamePiece temp = gamePieces[i][indexZero[1]];
+            gamePiecesToMove.add(temp);
+        }
+
+        gamePiecesToMove.add(gamePieceZero);
+
+        int tempRowIndex = 0;
+        for (int i = indexZero[0]; i < indexOfGamePiece[0]+1; i++) {
+            gamePieces[i][indexZero[1]] = gamePiecesToMove.get(tempRowIndex);
+            tempRowIndex ++;
+        }
     }
     public void moveArbitrarilyGamePiecesEast(){
 
     }
-    public void moveArbitrarilyGamePiecesSouth(){
-
+    public void moveArbitrarilyGamePiecesSouth(int[] indexZero, int[] indexOfGamePiece){
     }
     public void moveArbitrarilyGamePiecesWest(){
 
