@@ -67,8 +67,8 @@ public class Grid extends JFrame {
     public void constructBoard(boolean fixedGame, GamePiece[][] gamePieces){
         if(!fixedGame){
             Random random = new Random();
-            for (int i = gamePieces.length - 1; i >= 0; i--) {
-                for (int j = gamePieces[i].length - 1; j >= 0; j--) {
+            for (int i = 0; i < gamePieces.length; i++) {
+                for (int j = 0; j < gamePieces[i].length; j++) {
                     int row = random.nextInt(gamePieces.length);
                     int column = random.nextInt(gamePieces[i].length);
 
