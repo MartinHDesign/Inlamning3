@@ -13,13 +13,8 @@ public class GameListener extends MouseAdapter {
     private boolean moveArbitrarilyGamePieces = true;
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        moveGamePiece(e);
-    }
-
-    @Override
     public void mousePressed(MouseEvent e) {
-//        moveGamePiece(e);
+        moveGamePiece(e);
     }
 
     public void moveGamePiece(MouseEvent e){
@@ -29,8 +24,7 @@ public class GameListener extends MouseAdapter {
         if (moveArbitrarilyGamePieces) {
             switchPositionArbitraryGamePieces(indexZero, indexOfGamePiece);
             activeGrid.constructBoard(true,gamePieces);
-        }
-        if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece) && !moveArbitrarilyGamePieces) {
+        }else if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece)) {
             switchPositionGamePieces(indexZero, indexOfGamePiece);
             activeGrid.constructBoard(true,gamePieces);
         }
