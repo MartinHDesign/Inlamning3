@@ -3,12 +3,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GameListener extends MouseAdapter {
-    private GamePiece[][] gamePieces;
-    private Grid activeGrid;
-    private boolean moveArbitrarilyGamePieces = true;
+public class MovementLogic extends MouseAdapter {
+    private final GamePiece[][] gamePieces;
+    private final Grid activeGrid;
+    private boolean moveArbitrarilyGamePieces = false;
 
-    public GameListener(GamePiece[][] gamePieces ,Grid activeGrid) {
+    public MovementLogic(GamePiece[][] gamePieces , Grid activeGrid) {
         this.gamePieces = gamePieces;
         this.activeGrid = activeGrid;
 

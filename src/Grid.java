@@ -8,7 +8,7 @@ public class Grid extends JFrame {
     private static final int VERTICAL_OFFSET = 48;
     private GamePiece[][] gamePieces;
     private boolean fixedGame = false;
-    private GameListener movement;
+    private MovementLogic movement;
     private final JLabel winLabel = new JLabel(new ImageIcon("src/images/You win.gif"));
     private int rows = 4;
     private int columns = 4;
@@ -58,7 +58,7 @@ public class Grid extends JFrame {
         }
     }
     private void addMouseListener(GamePiece[][] gamePieces){
-        GameListener movement = new GameListener(gamePieces, this);
+        MovementLogic movement = new MovementLogic(gamePieces, this);
         setMovement(movement);
         for(int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -163,7 +163,7 @@ public class Grid extends JFrame {
         this.rows = rows;
         this.columns = columns;
     }
-    public void setMovement(GameListener movement) {
+    public void setMovement(MovementLogic movement) {
         this.movement = movement;
     }
 
