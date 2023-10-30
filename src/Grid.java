@@ -130,7 +130,7 @@ public class Grid extends JFrame {
                     ((Timer) e.getSource()).stop();
                     playWinAnimation();
                 } else {
-                    gamePieces[row][column].setImage(new ImageIcon("src/images/WinTile.png"), rows, columns);
+                    gamePieces[row][column].setImage(new ImageIcon("src/images/WinTile.png"));
                     revalidate();
                     repaint();
                     column++;
