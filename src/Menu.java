@@ -55,13 +55,13 @@ public class Menu extends JMenuBar {
         gridSizeMenu.add(Five);
         gridSizeMenu.add(Six);
 
-        JMenuItem ArbitrarilyMovement = new JMenuItem("Arbitrarily movement");
-        ArbitrarilyMovement.addActionListener(e -> movementLogic.setMoveArbitrarilyGamePieces(true));
+        JMenuItem ArbitraryMovement = new JMenuItem("Arbitrary movement");
+        ArbitraryMovement.addActionListener(e -> movementLogic.setArbitrarilyMoveGamePieces(true));
 
         JMenuItem SingleMovement = new JMenuItem("Single movement");
-        SingleMovement.addActionListener(e -> movementLogic.setMoveArbitrarilyGamePieces(false));
+        SingleMovement.addActionListener(e -> movementLogic.setArbitrarilyMoveGamePieces(false));
 
-        movementMenu.add(ArbitrarilyMovement);
+        movementMenu.add(ArbitraryMovement);
         movementMenu.add(SingleMovement);
 
         gameSettingsMenu.add(gridSizeMenu);
@@ -95,7 +95,13 @@ public class Menu extends JMenuBar {
                 You are allowed to move a tile if it has an empty tile next to it.
                 You do this by clicking the adjacent tile.
                 If you click [12] in the above example it would move to the empty tile [    ].
-                and the tile you clicked would now be empty.""",
+                and the tile you clicked would now be empty.
+                
+                In the settings menu you can choose your grid size and switch how you move blocks.
+                Arbitrary movement lets you move multiple blocks as long as you click on one that shares
+                a row with an empty space. All the blocks between the clicked and empty blocks will then be
+                pushed towards the empty block.
+                In the above example, clicking [ 9 ] would move [ 9 ], [10] and [11] towards [    ].""",
                 "Game Rules", JOptionPane.PLAIN_MESSAGE));
 
         JMenuItem about = new JMenuItem("About");
