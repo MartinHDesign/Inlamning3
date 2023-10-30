@@ -108,13 +108,13 @@ public class Grid extends JFrame {
     public void checkWin(GamePiece[][] gamePieces){
         int currentValue = 0;
         for(GamePiece[] g: gamePieces){
-                for (GamePiece gp : g) {
-                    if (gp.getValue() != 0 && gp.getValue() != currentValue + 1) {
-                        return;
-                    }
-                    currentValue = gp.getValue();
+            for (GamePiece gp : g) {
+                if (gp.getValue() != 0 && gp.getValue() != currentValue + 1) {
+                    return;
                 }
+                currentValue = gp.getValue();
             }
+        }
         win();
     }
 
@@ -130,7 +130,7 @@ public class Grid extends JFrame {
                     ((Timer) e.getSource()).stop();
                     playWinAnimation();
                 } else {
-                    gamePieces[row][column].setImage(new ImageIcon("src/images/WinTile.png"), rows, columns);
+                    gamePieces[row][column].setImage(new ImageIcon("src/images/WinTile.png"));
                     revalidate();
                     repaint();
                     column++;

@@ -53,7 +53,7 @@ public class GamePiece extends JPanel {
     }
 
 
-    public void setImage(ImageIcon image, int rows, int columns) {
+    public void setImage(ImageIcon image) {
         Image originalImage = image.getImage();
         this.image = new ImageIcon(originalImage.getScaledInstance(size, size, Image.SCALE_SMOOTH));
     }
