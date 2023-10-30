@@ -8,11 +8,11 @@ public class GameListener extends MouseAdapter {
     private Grid activeGrid;
     private boolean moveArbitrarilyGamePieces = true;
 
-    public GameListener(GamePiece[][] gamePieces , Grid activeGrid) {
+    public GameListener(GamePiece[][] gamePieces ,Grid activeGrid) {
         this.gamePieces = gamePieces;
         this.activeGrid = activeGrid;
-    }
 
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -158,5 +158,8 @@ public class GameListener extends MouseAdapter {
             gamePieces[indexZero[0]][i] = gamePiecesToMoveWest.get(tempRowIndex);
             tempRowIndex ++;
         }
+    }
+    public void setMoveArbitrarilyGamePieces(boolean moveArbitrarilyGamePieces) {
+        this.moveArbitrarilyGamePieces = moveArbitrarilyGamePieces;
     }
 }

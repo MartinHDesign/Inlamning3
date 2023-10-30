@@ -4,6 +4,8 @@ public class Menu extends JMenuBar {
 
     private Grid grid;
 
+    private GameListener movementLogic;
+
     public Menu() {
         gameMenu();
         gameSettingsMenu();
@@ -34,6 +36,8 @@ public class Menu extends JMenuBar {
 
         JMenu gridSizeMenu = new JMenu("Grid size");
 
+        JMenu movementMenu = new JMenu("Game piece movement");
+
         JMenuItem Three = new JMenuItem ("3x3");
         Three.addActionListener(e -> setGridSize(3));
 
@@ -51,7 +55,17 @@ public class Menu extends JMenuBar {
         gridSizeMenu.add(Five);
         gridSizeMenu.add(Six);
 
+        JMenuItem ArbitrarilyMovement = new JMenuItem("Arbitrarily movement");
+        ArbitrarilyMovement.addActionListener(e -> movementLogic.setMoveArbitrarilyGamePieces(true));
+
+        JMenuItem SingleMovement = new JMenuItem("Single movement");
+        SingleMovement.addActionListener(e -> movementLogic.setMoveArbitrarilyGamePieces(false));
+
+        movementMenu.add(ArbitrarilyMovement);
+        movementMenu.add(SingleMovement);
+
         gameSettingsMenu.add(gridSizeMenu);
+        gameSettingsMenu.add(movementMenu);
 
         add(gameSettingsMenu);
     }
@@ -101,6 +115,10 @@ public class Menu extends JMenuBar {
 
     public void setGrid(Grid grid){
         this.grid = grid;
+    }
+
+    public void setMovementLogic(GameListener movement){
+        this.movementLogic = movement;
     }
 
 }
