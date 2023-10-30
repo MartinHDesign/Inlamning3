@@ -6,7 +6,7 @@ import java.util.List;
 public class MovementLogic extends MouseAdapter {
     private final GamePiece[][] gamePieces;
     private final Grid activeGrid;
-    private boolean moveArbitrarilyGamePieces = false;
+    private boolean moveArbitraryGamePieces = false;
 
     public MovementLogic(GamePiece[][] gamePieces , Grid activeGrid) {
         this.gamePieces = gamePieces;
@@ -23,7 +23,7 @@ public class MovementLogic extends MouseAdapter {
         int[] indexZero = findIndex(0);
         int[] indexOfGamePiece = findIndex(((GamePiece) e.getSource()).getValue());
 
-        if (moveArbitrarilyGamePieces) {
+        if (moveArbitraryGamePieces) {
             switchPositionArbitraryGamePieces(indexZero, indexOfGamePiece);
             activeGrid.constructBoard(true,gamePieces);
         }else if (zeroAdjacentGamePiece(indexZero,indexOfGamePiece)) {
@@ -69,11 +69,11 @@ public class MovementLogic extends MouseAdapter {
         if (zeroIsDirectionNorth(indexOfZero , indexOfGamePiece)){
             moveArbitrarilyGamePiecesNorth(indexOfZero , indexOfGamePiece);
         } else if (zeroIsDirectionEast(indexOfZero , indexOfGamePiece)) {
-            moveArbitrarilyGamePiecesEast(indexOfZero , indexOfGamePiece);
+            moveArbitraryGamePiecesEast(indexOfZero , indexOfGamePiece);
         } else if (zeroIsDirectionSouth(indexOfZero , indexOfGamePiece)) {
-            moveArbitrarilyGamePiecesSouth(indexOfZero , indexOfGamePiece);
+            moveArbitraryGamePiecesSouth(indexOfZero , indexOfGamePiece);
         } else if (zeroIsDirectionWest(indexOfZero , indexOfGamePiece)) {
-            moveArbitrarilyGamePiecesWest(indexOfZero , indexOfGamePiece);
+            moveArbitraryGamePiecesWest(indexOfZero , indexOfGamePiece);
         }
 
     }
@@ -106,7 +106,7 @@ public class MovementLogic extends MouseAdapter {
             tempRowIndex ++;
         }
     }
-    public void moveArbitrarilyGamePiecesEast(int[] indexZero,int[] indexOfGamePiece){
+    public void moveArbitraryGamePiecesEast(int[] indexZero, int[] indexOfGamePiece){
         List<GamePiece> gamePiecesToMoveEast = new ArrayList<>();
         GamePiece gamePieceZero = gamePieces[indexZero[0]][indexZero[1]];
 
@@ -123,7 +123,7 @@ public class MovementLogic extends MouseAdapter {
             tempRowIndex ++;
         }
     }
-    public void moveArbitrarilyGamePiecesSouth(int[] indexZero, int[] indexOfGamePiece){
+    public void moveArbitraryGamePiecesSouth(int[] indexZero, int[] indexOfGamePiece){
         List<GamePiece> gamePiecesToMoveSouth = new ArrayList<>();
         GamePiece gamePieceZero = gamePieces[indexZero[0]][indexZero[1]];
 
@@ -141,7 +141,7 @@ public class MovementLogic extends MouseAdapter {
             tempRowIndex ++;
         }
     }
-    public void moveArbitrarilyGamePiecesWest(int[] indexZero,int[] indexOfGamePiece){
+    public void moveArbitraryGamePiecesWest(int[] indexZero, int[] indexOfGamePiece){
         List<GamePiece> gamePiecesToMoveWest = new ArrayList<>();
         GamePiece gamePieceZero = gamePieces[indexZero[0]][indexZero[1]];
 
@@ -159,7 +159,7 @@ public class MovementLogic extends MouseAdapter {
             tempRowIndex ++;
         }
     }
-    public void setMoveArbitrarilyGamePieces(boolean moveArbitrarilyGamePieces) {
-        this.moveArbitrarilyGamePieces = moveArbitrarilyGamePieces;
+    public void setMoveArbitraryGamePieces(boolean moveArbitraryGamePieces) {
+        this.moveArbitraryGamePieces = moveArbitraryGamePieces;
     }
 }
