@@ -8,8 +8,9 @@ public class Grid extends JFrame {
     private static final int VERTICAL_OFFSET = 48;
     private GamePiece[][] gamePieces;
     private boolean fixedGame = false;
-    private final Menu menu = new Menu();
     private MovementLogic movement;
+
+    Menu menu = new Menu();
     private final JLabel winLabel = new JLabel(new ImageIcon("src/images/You win.gif"));
     private int rows = 4;
     private int columns = 4;
@@ -20,7 +21,6 @@ public class Grid extends JFrame {
 
         createNewGameState();
 
-        Menu menu = new Menu();
         menu.setGrid(this);
         setJMenuBar(menu);
 
@@ -34,7 +34,7 @@ public class Grid extends JFrame {
         createGamePieces(gamePieces);
         constructBoard(fixedGame, gamePieces);
         addMouseListener(gamePieces);
-        menu.setMovementLogic(movement);
+        createMenu();
     }
 
     public void newGame(boolean isGameFixed){
