@@ -52,9 +52,6 @@ public class GamePiece extends JPanel {
         }
     }
 
-    public ImageIcon getImage() {
-        return image;
-    }
 
     public void setImage(ImageIcon image, int rows, int columns) {
         Image originalImage = image.getImage();
@@ -65,8 +62,5 @@ public class GamePiece extends JPanel {
         return value;
     }
 
-    public void setValue(int value) {
-        this.value = value;
-    }
 
 }

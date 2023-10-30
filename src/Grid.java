@@ -19,13 +19,21 @@ public class Grid extends JFrame {
 
         createNewGameState();
 
+        createMenu();
+
+//        Menu menu = new Menu();
+//        menu.setGrid(this);
+//        menu.setMovementLogic(movement);
+//        setJMenuBar(menu);
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+    private void createMenu(){
         Menu menu = new Menu();
         menu.setGrid(this);
         menu.setMovementLogic(movement);
         setJMenuBar(menu);
-
-        setLocationRelativeTo(null);
-        setVisible(true);
     }
 
     private void createNewGameState(){
@@ -34,6 +42,7 @@ public class Grid extends JFrame {
         createGamePieces(gamePieces);
         constructBoard(fixedGame, gamePieces);
         addMouseListener(gamePieces);
+        createMenu();
     }
 
     public void newGame(boolean isGameFixed){
