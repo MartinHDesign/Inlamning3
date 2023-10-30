@@ -56,10 +56,10 @@ public class Menu extends JMenuBar {
         gridSizeMenu.add(Six);
 
         JMenuItem ArbitraryMovement = new JMenuItem("Arbitrary movement");
-        ArbitraryMovement.addActionListener(e -> movementLogic.setArbitraryMoveGamePieces(true));
+        ArbitraryMovement.addActionListener(e -> movementLogic.setMoveArbitraryGamePieces(true));
 
         JMenuItem SingleMovement = new JMenuItem("Single movement");
-        SingleMovement.addActionListener(e -> movementLogic.setArbitrarilyMoveGamePieces(false));
+        SingleMovement.addActionListener(e -> movementLogic.setMoveArbitraryGamePieces(false));
 
         movementMenu.add(ArbitraryMovement);
         movementMenu.add(SingleMovement);
