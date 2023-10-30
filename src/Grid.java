@@ -9,6 +9,8 @@ public class Grid extends JFrame {
     private GamePiece[][] gamePieces;
     private boolean fixedGame = false;
     private MovementLogic movement;
+
+    Menu menu = new Menu();
     private final JLabel winLabel = new JLabel(new ImageIcon("src/images/You win.gif"));
     private int rows = 4;
     private int columns = 4;
@@ -19,21 +21,11 @@ public class Grid extends JFrame {
 
         createNewGameState();
 
-        createMenu();
-
-//        Menu menu = new Menu();
-//        menu.setGrid(this);
-//        menu.setMovementLogic(movement);
-//        setJMenuBar(menu);
+        menu.setGrid(this);
+        setJMenuBar(menu);
 
         setLocationRelativeTo(null);
         setVisible(true);
-    }
-    private void createMenu(){
-        Menu menu = new Menu();
-        menu.setGrid(this);
-        menu.setMovementLogic(movement);
-        setJMenuBar(menu);
     }
 
     private void createNewGameState(){
@@ -42,7 +34,7 @@ public class Grid extends JFrame {
         createGamePieces(gamePieces);
         constructBoard(fixedGame, gamePieces);
         addMouseListener(gamePieces);
-        createMenu();
+        menu.setMovementLogic(movement);
     }
 
     public void newGame(boolean isGameFixed){
