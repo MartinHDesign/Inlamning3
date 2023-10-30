@@ -9,6 +9,7 @@ public class Grid extends JFrame {
     private GamePiece[][] gamePieces;
     private boolean fixedGame = false;
     private MovementLogic movement;
+
     Menu menu = new Menu();
     private final JLabel winLabel = new JLabel(new ImageIcon("src/images/You win.gif"));
     private int rows = 4;
@@ -33,6 +34,7 @@ public class Grid extends JFrame {
         createGamePieces(gamePieces);
         constructBoard(fixedGame, gamePieces);
         addMouseListener(gamePieces);
+        menu.setMovementLogic(movement);
     }
 
     public void newGame(boolean isGameFixed){
@@ -106,13 +108,13 @@ public class Grid extends JFrame {
     public void checkWin(GamePiece[][] gamePieces){
         int currentValue = 0;
         for(GamePiece[] g: gamePieces){
-                for (GamePiece gp : g) {
-                    if (gp.getValue() != 0 && gp.getValue() != currentValue + 1) {
-                        return;
-                    }
-                    currentValue = gp.getValue();
+            for (GamePiece gp : g) {
+                if (gp.getValue() != 0 && gp.getValue() != currentValue + 1) {
+                    return;
                 }
+                currentValue = gp.getValue();
             }
+        }
         win();
     }
 
