@@ -101,7 +101,7 @@ public class Menu extends JMenuBar {
                 Arbitrary movement lets you move multiple blocks as long as you click on one that shares
                 a row with an empty space. All the blocks between the clicked and empty blocks will then be
                 pushed towards the empty block.
-                In the above example, clicking [ 9 ] would move [ 9 ], [10] and [11] towards [    ].""",
+                In the above example; clicking [ 9 ] would move [ 9 ], [10] and [11] towards [    ].""",
                 "Game Rules", JOptionPane.PLAIN_MESSAGE));
 
         JMenuItem about = new JMenuItem("About");
